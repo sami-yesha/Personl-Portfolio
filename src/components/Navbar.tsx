@@ -73,7 +73,7 @@ export function Navbar() {
             </a>
           ))}
           <Button size="sm" asChild className="ml-4">
-            <a href="#contact">Contact Me</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>Contact Me</a>
           </Button>
         </nav>
 
@@ -104,7 +104,7 @@ export function Navbar() {
                 </a>
               ))}
               <Button size="sm" className="w-full" asChild>
-                <a href="#contact">Contact Me</a>
+                <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>Contact Me</a>
               </Button>
             </nav>
           </motion.div>
