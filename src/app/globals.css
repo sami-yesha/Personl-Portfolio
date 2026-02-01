@@ -1,38 +1,49 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --radius: 0.5rem;
-  }
-}
+@theme {
+  /* Warm Stone & Emerald Palette */
+  --color-background: #0c0a09; /* warm-stone-950 */
+  --color-foreground: #fafaf9; /* warm-stone-50 */
+  
+  --color-card: #1c1917; /* warm-stone-900 */
+  --color-card-foreground: #fafaf9;
+  
+  --color-popover: #0c0a09;
+  --color-popover-foreground: #fafaf9;
+  
+  --color-primary: #10b981; /* emerald-500 */
+  --color-primary-foreground: #ffffff;
+  
+  --color-secondary: #292524; /* warm-stone-800 */
+  --color-secondary-foreground: #fafaf9;
+  
+  --color-muted: #292524;
+  --color-muted-foreground: #a8a29e; /* warm-stone-400 */
+  
+  --color-accent: #292524;
+  --color-accent-foreground: #fafaf9;
+  
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafaf9;
+  
+  --color-border: #292524;
+  --color-input: #292524;
+  --color-ring: #10b981;
+  
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+  
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
 
-@layer base {
-  * {
-    @apply border-border;
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
   }
-  body {
-    @apply bg-background text-foreground;
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
   }
 }
 
@@ -42,18 +53,23 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: var(--color-background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
+  background: var(--color-muted);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--border));
+  background: var(--color-border);
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
 }
