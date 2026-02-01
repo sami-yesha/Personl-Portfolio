@@ -18,6 +18,29 @@ export const metadata: Metadata = {
   title: "Samuel Yeshambel | Senior Backend Developer",
   description: "Portfolio of Samuel Yeshambel, a Senior Backend Developer specializing in scalable systems, microservices, and secure architecture.",
   keywords: ["Backend Developer", "Node.js", "Nest.js", "Ethiopia", "Software Engineer", "Portfolio"],
+  authors: [{ name: "Samuel Yeshambel" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://personl-portfolio-zeta.vercel.app",
+    siteName: "Samuel Yeshambel Portfolio",
+    title: "Samuel Yeshambel | Senior Backend Developer",
+    description: "Portfolio of Samuel Yeshambel, a Senior Backend Developer specializing in scalable systems, microservices, and secure architecture.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Samuel Yeshambel - Senior Backend Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Samuel Yeshambel | Senior Backend Developer",
+    description: "Portfolio of Samuel Yeshambel, a Senior Backend Developer specializing in scalable systems, microservices, and secure architecture.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

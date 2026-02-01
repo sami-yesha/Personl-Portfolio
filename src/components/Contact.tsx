@@ -57,10 +57,15 @@ export function Contact() {
             </Card>
           </div>
 
-          <div className="pt-8">
-            <Button size="lg" className="w-full md:w-auto" asChild>
+          <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <Button size="lg" className="w-full sm:w-auto" asChild>
               <a href="mailto:samuelyeshambel9@gmail.com">
                 Say Hello <ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button size="lg" variant="secondary" className="w-full sm:w-auto" asChild>
+              <a href="/cv.pdf" download="Samuel_Yeshambel_CV.pdf">
+                Download CV <ArrowRight className="ml-2 h-4 w-4" />
               </a>
             </Button>
           </div>
