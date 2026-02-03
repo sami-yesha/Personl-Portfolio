@@ -11,19 +11,19 @@ const projects = [
     title: "Connect App",
     description: "Nationwide digital financial services platform allowing seamless mobile payments and fund transfers across banks.",
     tags: ["Backend Architecture", "Node.js", "Financial Tech", "Microservices"],
-    link: "#", // Placeholder
+    link: "https://github.com/sami-yesha", // Placeholder
   },
   {
     title: "Dashen SuperApp",
     description: "Multi-service super app integrating wallet services, merchant payments, and digital lifestyle features for millions of users.",
     tags: ["Scalability", "Security", "Optimization", "API Design"],
-    link: "#",
+    link: "https://github.com/sami-yesha",
   },
   {
     title: "Gift Ethiopia Remittance",
     description: "International remittance platform facilitating cross-border money transfers with real-time currency conversions.",
     tags: ["FinTech", "Compliance", "KYC", "Security"],
-    link: "#",
+    link: "https://github.com/sami-yesha",
   },
 ];
 
@@ -62,8 +62,13 @@ export function Projects() {
                 </CardContent>
                 <CardFooter className="pt-6">
                   <Button variant="ghost" size="sm" className="w-full group/btn hover:bg-primary hover:text-primary-foreground transition-all duration-300" asChild>
-                    <a href={project.link} className="flex items-center justify-center gap-2">
-                      View Project 
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      View Project
                       <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </a>
                   </Button>
