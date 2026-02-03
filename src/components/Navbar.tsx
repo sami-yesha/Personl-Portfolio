@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Menu, X, Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -48,18 +49,23 @@ export function Navbar() {
   }, [isOpen]);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-      setIsOpen(false);
-    }
+    closeMenu();
+    
+    // Small timeout to allow state change and animation start
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
   };
 
   const menuVariants = {
@@ -123,17 +129,22 @@ export function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full rounded-full" />
             </a>
           ))}
-          <Button size="sm" asChild className="ml-4 rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300">
-            <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>Hire Me</a>
-          </Button>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            <Button size="sm" asChild className="ml-0 rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300">
+              <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>Hire Me</a>
+            </Button>
+          </div>
         </nav>
 
         {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden relative z-[60] w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 backdrop-blur-sm border border-white/10 text-foreground" 
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
+        <div className="flex items-center gap-4 md:hidden">
+          <ThemeToggle />
+          <button 
+            className="relative z-[60] w-10 h-10 flex items-center justify-center rounded-full bg-secondary/50 backdrop-blur-sm border border-white/10 text-foreground" 
+            onClick={toggleMenu}
+            aria-label="Toggle Menu"
+          >
           <AnimatePresence mode="wait">
             {isOpen ? (
               <motion.div
@@ -159,21 +170,24 @@ export function Navbar() {
           </AnimatePresence>
         </button>
       </div>
+    </div>
 
       {/* Mobile Nav Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            key="mobile-menu"
             variants={menuVariants}
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 z-50 md:hidden bg-background/95 backdrop-blur-2xl flex flex-col justify-center items-center overflow-hidden"
+            className="fixed inset-0 z-50 md:hidden bg-background/98 backdrop-blur-xl flex flex-col justify-center items-center overflow-hidden"
           >
             <nav className="flex flex-col items-center space-y-8">
-              {navLinks.map((link) => (
+              {navLinks.map((link, index) => (
                 <motion.a
                   key={link.name}
+                  custom={index}
                   variants={itemVariants}
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href)}
@@ -184,7 +198,7 @@ export function Navbar() {
               ))}
               
               <motion.div variants={itemVariants} className="pt-8">
-                <Button size="lg" className="rounded-full px-12 text-lg font-semibold" asChild>
+                <Button size="lg" className="rounded-full px-12 text-lg font-semibold shadow-2xl shadow-primary/20" asChild>
                   <a href="#contact" onClick={(e) => scrollToSection(e, "#contact")}>Get in Touch</a>
                 </Button>
               </motion.div>
@@ -196,7 +210,7 @@ export function Navbar() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                    className="p-3 rounded-full bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 border border-white/5"
                     aria-label={social.name}
                   >
                     <social.icon className="h-6 w-6" />

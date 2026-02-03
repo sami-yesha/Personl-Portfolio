@@ -35,20 +35,25 @@ export function Skills() {
           <p className="text-muted-foreground">Technologies and tools I work with</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-5xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
           {skillCategories.map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="p-6 bg-card rounded-lg border border-border shadow-sm hover:border-primary/50 transition-colors"
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5, transition: { duration: 0.2 } }}
+              className="p-8 bg-card/50 backdrop-blur-sm rounded-2xl border border-white/5 shadow-lg hover:shadow-primary/10 hover:border-primary/20 transition-colors group"
             >
-              <h3 className="text-lg font-semibold mb-4 text-primary">{category.title}</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-xl font-bold mb-6 text-foreground group-hover:text-primary transition-colors">{category.title}</h3>
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill) => (
-                  <Badge key={skill} variant="secondary" className="hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <Badge 
+                    key={skill} 
+                    variant="secondary" 
+                    className="px-3 py-1 bg-secondary/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300 border border-white/5"
+                  >
                     {skill}
                   </Badge>
                 ))}

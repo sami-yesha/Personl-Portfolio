@@ -36,33 +36,35 @@ export function Projects() {
           <p className="text-muted-foreground">Key projects I&apos;ve engineered and contributed to</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
             >
-              <Card className="h-full flex flex-col hover:shadow-lg transition-all hover:border-primary/50">
+              <Card className="h-full flex flex-col bg-card/50 backdrop-blur-sm border-white/5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-300">
                 <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
+                  <CardTitle className="text-2xl text-foreground">{project.title}</CardTitle>
                 </CardHeader>
                 <CardContent className="flex-1">
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
+                      <Badge key={tag} variant="secondary" className="bg-secondary/50 border border-white/5 text-xs px-2.5 py-0.5">
                         {tag}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter>
-                  <Button variant="ghost" size="sm" className="w-full" asChild>
-                    <a href={project.link} className="flex items-center gap-2">
-                      View Project <ExternalLink className="w-4 h-4" />
+                <CardFooter className="pt-6">
+                  <Button variant="ghost" size="sm" className="w-full group/btn hover:bg-primary hover:text-primary-foreground transition-all duration-300" asChild>
+                    <a href={project.link} className="flex items-center justify-center gap-2">
+                      View Project 
+                      <ExternalLink className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </a>
                   </Button>
                 </CardFooter>

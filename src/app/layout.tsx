@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/Navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,18 +50,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
         className={cn(
           geistSans.variable,
           geistMono.variable,
-          "antialiased min-h-screen bg-background font-sans text-foreground selection:bg-primary/20 selection:text-primary"
+          "antialiased min-h-screen bg-background font-sans text-foreground selection:bg-primary/20 selection:text-primary transition-colors duration-300"
         )}
       >
-        <main className="flex flex-col min-h-screen">
-          <Navbar />
-          {children}
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="flex flex-col min-h-screen">
+            <Navbar />
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
