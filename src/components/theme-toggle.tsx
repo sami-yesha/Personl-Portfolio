@@ -25,7 +25,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="relative rounded-full h-10 w-10 hover:bg-secondary transition-colors"
+      className="relative rounded-full h-10 w-10 hover:bg-secondary transition-colors cursor-pointer"
       aria-label="Toggle theme"
     >
       <motion.div

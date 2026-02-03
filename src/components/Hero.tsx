@@ -31,7 +31,7 @@ export function Hero() {
               Specializing in building scalable, high-performance systems and secure data-driven architectures using Node.js, Nest.js, and modern cloud technologies.
             </p>
           </motion.div>
-
+{/* 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export function Hero() {
             <Button size="lg" variant="secondary" className="h-12 px-8 text-base">
               Download CV <Download className="ml-2 h-4 w-4" />
             </Button>
-          </motion.div>
+          </motion.div> */}
 
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
